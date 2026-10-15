@@ -97,12 +97,23 @@ Manager), Rosa Alvarez (Property Manager), Priya Shah (Admin, the inviter).
 - No control for granting the chase-agent permission to an individual Operator.
 - Switching Company only names the other company; each scenario holds one.
 
-## Deploying for testing
+## Testing
 
-Follow the `kilowatt-prototype-testing` skill and
-`03-testing/03-test-environment.md`. `vercel.json` has the SPA rewrite and the
-no-index header. Password Protection must be on before any deployment that
-holds snapshot data.
+Hosting, password protection, rounds, session links and tester silos follow the
+`kilowatt-prototype-testing` skill (`skills/kilowatt-prototype-testing/` in the
+Kilowatt repo) and `03-testing/03-test-environment.md`.
+
+- `vercel.json` has the single-page-app rewrite and the no-index header.
+- `test-presets.json` holds one preset per persona per round (`r1-sl`, `r1-am`,
+  `r1-pm`); `test-states.json` maps state IDs to a scenario and route.
+- `scripts/pull-snapshot.mjs` runs first in `npm run build`. With no
+  `KILOWATT_SNAPSHOT_VERSION` it writes nothing and the app uses synthetic data;
+  with one, it fails the build rather than fall back.
+- Password Protection (scope All Deployments) must be on before any deployment
+  that holds snapshot data. Passwords and tokens are typed by a person, never
+  committed.
+- Telemetry (Mixpanel events with round, preset, participant, commit, snapshot
+  version and mode) is not built yet.
 
 ## Stack
 
