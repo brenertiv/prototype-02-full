@@ -9,6 +9,7 @@ import { FirstLogin } from '../onboarding/FirstLogin';
 import { NoAccessPage } from '../pages/NoAccessPage';
 import { PHONE_QUERY, useMediaQuery } from '../state/media';
 import { usePrefs } from '../state/preferences';
+import { WorkspaceRuntimeProvider } from '../workspace/registry';
 import { useSectionAccess } from './access';
 import { CompanyModal } from './CompanyModal';
 import { Icon } from './Icon';
@@ -90,6 +91,7 @@ export function Shell() {
 
   return (
     <PageControlsProvider>
+      <WorkspaceRuntimeProvider>
       <div className="shell" data-phone={phone || undefined} data-docked={docked} data-drawer={prefs.drawerOpen || undefined}>
         <a className="skip-link" href="#main">
           Skip to content
@@ -155,6 +157,7 @@ export function Shell() {
         <FirstLogin />
         <TestPanel />
       </div>
+      </WorkspaceRuntimeProvider>
     </PageControlsProvider>
   );
 }
