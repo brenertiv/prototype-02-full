@@ -92,6 +92,10 @@ function resolve(): { stored: Stored; startRoute: string | null } {
     config = { ...DEFAULT_CONFIG, ...STATES[stateId], state: stateId };
     startRoute = config.start ?? null;
   }
+  else if (TEST_PARAMS.some((p) => params.has(p))) {
+    // A plain link starts clean: a state's one-off settings don't carry over.
+    config = { ...config, state: undefined, firstLogin: false, start: undefined };
+  }
   const scenario = params.get('scenario');
   if (scenario && /^SC-[1-6]$/.test(scenario)) config.scenario = scenario as ScenarioId;
   const persona = params.get('persona');

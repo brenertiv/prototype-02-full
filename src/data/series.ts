@@ -61,7 +61,7 @@ export function portfolioMonthly(data: Dataset, buildings: Building[], n = 24) {
     let cost = 0;
     let tco2e = 0;
     let covered = 0;
-    let estimated = false;
+    let estKwh = 0;
     per.forEach((series) => {
       const p = series[k];
       if (p.kwh !== null) {
@@ -69,10 +69,11 @@ export function portfolioMonthly(data: Dataset, buildings: Building[], n = 24) {
         cost += p.cost ?? 0;
         tco2e += p.tco2e ?? 0;
         covered++;
+        if (p.estimated) estKwh += p.kwh;
       }
-      if (p.estimated) estimated = true;
     });
-    return { month, kwh, cost, tco2e: Math.round(tco2e), covered, of: buildings.length, estimated };
+    // A month reads as estimated when estimated values are a material share of it (over 10%).
+    return { month, kwh, cost, tco2e: Math.round(tco2e), covered, of: buildings.length, estimated: kwh > 0 && estKwh / kwh > 0.1, estimatedShare: kwh > 0 ? estKwh / kwh : 0 };
   });
 }
 

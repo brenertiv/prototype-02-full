@@ -1416,3 +1416,6 @@ code {
 .canvas > article {
   margin-bottom: 24px;
 }
+.shell:not([data-phone])[data-drawer] .proto {
+  right: calc(var(--drawer-width) + 16px);
+}

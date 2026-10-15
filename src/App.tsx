@@ -21,6 +21,8 @@ const BASENAME = import.meta.env.BASE_URL === '/' ? undefined : import.meta.env.
 /** `/` opens Workspace, the app's home, in the Company and the last scope. */
 function Home() {
   const { data } = useData();
+  const { startRoute } = useTestConfig();
+  if (startRoute) return null; // StartRoute opens it
   return <Navigate to={`/${data.company.id}/${lastScope()}/workspace`} replace />;
 }
 

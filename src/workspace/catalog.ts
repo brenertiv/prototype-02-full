@@ -214,12 +214,14 @@ const JOB_COMPONENTS: Record<string, CompType[]> = {
   'data-problems': ['data-problems'],
   'energy-star-sync': ['es-sync'],
   'compliance-deadlines': ['framework-readiness', 'exposure-kpis'],
+  'tenant-requests': ['data-problems'],
 };
 const JOB_NAME: Record<string, string> = {
   'reporting-readiness': 'Reporting readiness',
   'exposure-by-asset': 'Exposure by asset',
   'coverage-gaps': 'Coverage gaps',
   'emissions-pathway': 'Emissions pathway',
+  'tenant-requests': 'Tenant requests',
   'capital-plan': 'Capital plan',
   'data-problems': 'Data problems to fix',
   'energy-star-sync': 'ENERGY STAR sync',
@@ -245,7 +247,8 @@ export function composeFromJobs(jobs: string[], persona: PersonaId, carbonPlanni
     if (k >= 0 && types.includes('capital-projects')) types.splice(k, 1);
   }
   const named = jobs.map((j) => JOB_NAME[j]).filter(Boolean);
-  const name = named.length ? (named.length > 2 ? `${named.slice(0, 2).join(', ')} and more` : named.join(' and ')) : 'My workspace';
+  const lower = named.map((n, i) => (i === 0 ? n : n[0].toLowerCase() + n.slice(1)));
+  const name = lower.length ? (lower.length > 2 ? `${lower.slice(0, 2).join(', ')} and more` : lower.join(' and ')) : 'My workspace';
   return { name, components: withIds(types.slice(0, 6).map((x) => c(x, x === 'equipment-eol' ? { window: 5 } : {}))) };
 }
 

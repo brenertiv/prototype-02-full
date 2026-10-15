@@ -15,7 +15,7 @@ export interface Job {
 }
 
 export const JOBS: Job[] = [
-  { id: 'reporting-readiness', label: 'See which buildings are ready to report', detail: 'And what’s missing for GRESB, CDP or a local law', icon: 'fact_check', weights: { sl: 2 } },
+  { id: 'reporting-readiness', label: 'See which buildings are ready to report', detail: 'And what’s missing for GRESB, ENERGY STAR or a local law', icon: 'fact_check', weights: { sl: 2 } },
   { id: 'coverage-gaps', label: 'Find gaps in our utility data', detail: 'Missing bills, meters and tenant consumption', icon: 'data_alert', weights: { sl: 2, pm: 1 } },
   { id: 'energy-star-sync', label: 'Keep ENERGY STAR in sync', detail: 'Scores, meters and what was sent to Portfolio Manager', icon: 'sync', weights: { sl: 2 } },
   { id: 'exposure-by-asset', label: 'Know our exposure, cost and carbon by asset', detail: 'One number per building I can defend', icon: 'monitoring', weights: { am: 2 } },
