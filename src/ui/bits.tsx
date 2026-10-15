@@ -303,27 +303,51 @@ export function Hint({ id, children }: { id: string; children: ReactNode }) {
 
 export function Popover({ trigger, children, label, align = 'left' }: { trigger: (open: boolean, toggle: () => void) => ReactNode; children: ReactNode; label: string; align?: 'left' | 'right' }) {
   const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
   const ref = useRef<HTMLSpanElement>(null);
+  const popRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
+    // Fixed position so a scrolling table or card never clips it.
+    const place = () => {
+      const r = ref.current?.getBoundingClientRect();
+      if (!r) return;
+      const w = popRef.current?.offsetWidth ?? 300;
+      const h = popRef.current?.offsetHeight ?? 160;
+      let left = align === 'right' ? r.right - w : r.left;
+      left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+      const below = r.bottom + 6;
+      const top = below + h > window.innerHeight - 8 && r.top - h - 6 > 8 ? r.top - h - 6 : below;
+      setPos({ top, left });
+    };
+    place();
+    const raf = requestAnimationFrame(place);
     const onDown = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      const t = e.target as Node;
+      if (ref.current?.contains(t) || popRef.current?.contains(t)) return;
+      setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false);
     };
+    const onScroll = () => setOpen(false);
     document.addEventListener('mousedown', onDown);
     document.addEventListener('keydown', onKey);
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', onScroll);
     return () => {
+      cancelAnimationFrame(raf);
       document.removeEventListener('mousedown', onDown);
       document.removeEventListener('keydown', onKey);
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', onScroll);
     };
-  }, [open]);
+  }, [open, align]);
   return (
     <span className="popover-anchor" ref={ref}>
       {trigger(open, () => setOpen((o) => !o))}
       {open && (
-        <div className={`popover popover--${align}`} role="dialog" aria-label={label}>
+        <div ref={popRef} className="popover" role="dialog" aria-label={label} style={{ position: 'fixed', top: pos?.top ?? -9999, left: pos?.left ?? -9999 }}>
           {children}
         </div>
       )}

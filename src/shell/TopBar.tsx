@@ -98,7 +98,7 @@ function ScopeIndicator({ phone }: { phone: boolean }) {
       <ol className={`scope-indicator scope-indicator--${level === 'portfolio' ? 'portfolio' : level === 'group' ? 'group' : 'property'}`}>
         <li className="scope-level">
           <Icon name={LEVEL_ICON[level]} filled />
-          <span className="scope-type">{scope.type}</span>
+          {level !== 'portfolio' && <span className="scope-type">{scope.type}</span>}
         </li>
         {!phone &&
           crumbs.map((c) => (

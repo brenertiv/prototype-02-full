@@ -1148,6 +1148,7 @@ code {
 .scope-nav-search {
   max-width: none;
   width: 100%;
+  flex: none;
 }
 .scope-row {
   display: flex;

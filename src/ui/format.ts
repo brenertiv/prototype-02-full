@@ -48,7 +48,12 @@ export function fmtDate(iso: string | null | undefined) {
 
 export function fmtMonth(ym: string) {
   const [y, m] = ym.split('-').map(Number);
-  return `${MONTHS[m - 1]} ${String(y).slice(2)}`;
+  return `${MONTHS[m - 1]} '${String(y).slice(2)}`;
+}
+
+export function fmtMonthLong(ym: string) {
+  const [y, m] = ym.split('-').map(Number);
+  return `${MONTHS[m - 1]} ${y}`;
 }
 
 export function fmtDateTime(iso: string | null | undefined) {

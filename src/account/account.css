@@ -1,0 +1,143 @@
+/* Account panel pages. Tokens only. */
+.acc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.acc-help {
+  font-size: 12px;
+}
+.acc-error {
+  color: var(--status-danger);
+  font-size: 13px;
+}
+.acc-dl {
+  margin: 4px 0 12px;
+}
+.acc-dl dd {
+  margin: 0;
+}
+.acc-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin: 8px 0 12px;
+}
+.acc-note .msym {
+  font-size: 18px;
+}
+.acc-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+.acc-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  cursor: pointer;
+  min-width: 0;
+}
+.acc-choice:hover {
+  background: var(--state-hovered);
+}
+.acc-choice.is-on {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+.acc-choice:focus-within {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.acc-choice input {
+  margin-top: 3px;
+}
+.acc-choice > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 14px;
+}
+.acc-choice .muted {
+  font-size: 13px;
+}
+.acc-jobs {
+  border: 0;
+  padding: 0;
+  margin: 0 0 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 0 16px;
+}
+.acc-suggest {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.acc-matrix th[scope='row'] {
+  font-weight: 500;
+  text-align: left;
+}
+.acc-matrix td,
+.acc-matrix thead th:not(:first-child) {
+  text-align: center;
+}
+.acc-actions {
+  margin-top: 16px;
+}
+.acc-summary {
+  font-size: 15px;
+  margin: 0 0 8px;
+}
+.acc-products {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 12px;
+}
+.acc-product {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.acc-product:not(.is-on) {
+  background: var(--surface-sunken);
+}
+.acc-product-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.acc-product-head h3 {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+.acc-small {
+  font-size: 12px;
+  margin: 0;
+}
+.acc-turns {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex: 1;
+}
+.acc-product-foot {
+  margin-top: 6px;
+  font-size: 13px;
+}
+.acc-product-foot .msym {
+  font-size: 16px;
+  vertical-align: -3px;
+}

@@ -1,0 +1,118 @@
+/* Notifications feed. Tokens only. */
+.ntf-toolbar {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+}
+.ntf-all {
+  padding: 0;
+  align-items: center;
+}
+.ntf-markall {
+  margin-left: auto;
+}
+.ntf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  overflow: hidden;
+}
+.ntf-item + .ntf-item {
+  border-top: 1px solid var(--border-subtle);
+}
+.ntf-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 14px;
+  text-align: left;
+  font: inherit;
+  color: var(--text-primary);
+  background: transparent;
+  cursor: pointer;
+}
+.ntf-btn:hover {
+  background: var(--state-hovered);
+}
+.ntf-btn:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+.ntf-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  color: var(--text-secondary);
+}
+.ntf-icon .msym {
+  font-size: 18px;
+}
+.ntf-icon--insights {
+  background: var(--status-success-container);
+  color: var(--on-status-success-container);
+}
+.ntf-icon--building-alerts {
+  background: var(--status-danger-container);
+  color: var(--on-status-danger-container);
+}
+.ntf-icon--data-alerts {
+  background: var(--status-warning-container);
+  color: var(--on-status-warning-container);
+}
+.ntf-icon--app-updates {
+  background: var(--status-info-container);
+  color: var(--on-status-info-container);
+}
+.ntf-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ntf-title {
+  overflow-wrap: anywhere;
+}
+.is-unread .ntf-title {
+  font-weight: 600;
+}
+.ntf-body {
+  font-size: 13px;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+.ntf-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.ntf-dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--accent);
+}
+.ntf-chev {
+  color: var(--text-tertiary);
+  flex: none;
+}
+@media (max-width: 767px) {
+  .ntf-markall {
+    margin-left: 0;
+  }
+  .ntf-chev {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useData } from '../data/store';
 import type { Building, Group } from '../data/types';
 import { useNav, useScopeInfo } from '../nav/route';
@@ -59,6 +59,17 @@ export function ScopeNavigator({ onClose, phone }: { onClose: () => void; phone:
     return path;
   }, [current.id, data.buildings, groups]);
   const [openPath, setOpenPath] = useState<string[]>(initialPath);
+  const columnsRef = useRef<HTMLDivElement>(null);
+
+  // Stay inside the viewport, and keep the newest column in view (CMP-SCOPE-02).
+  useLayoutEffect(() => {
+    const el = panelRef.current;
+    if (!el || phone) return;
+    const left = el.getBoundingClientRect().left;
+    el.style.maxWidth = `${Math.max(300, window.innerWidth - left - 16)}px`;
+    const cols = columnsRef.current;
+    if (cols) cols.scrollLeft = cols.scrollWidth;
+  }, [openPath, phone]);
 
   useEffect(() => {
     searchRef.current?.focus();
@@ -233,7 +244,7 @@ export function ScopeNavigator({ onClose, phone }: { onClose: () => void; phone:
               ))}
             </div>
           )}
-          <div className="scope-columns">
+          <div className="scope-columns" ref={columnsRef}>
             {shownColumns.map((col) => {
               const depth = columns.indexOf(col);
               return (
