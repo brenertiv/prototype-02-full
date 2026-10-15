@@ -1,0 +1,7 @@
+{
+  "r1-sl": { "scenario": "SC-1", "persona": "sl", "role": "admin", "start": "/workspace" },
+  "r1-am": { "scenario": "SC-1", "persona": "am", "role": "admin", "start": "/workspace" },
+  "r1-pm": { "scenario": "SC-1", "persona": "pm", "role": "operator", "start": "/workspace" },
+  "r1-sl-office": { "scenario": "SC-2", "persona": "sl", "role": "admin", "start": "/workspace" },
+  "r1-first-login": { "scenario": "SC-5", "persona": "none", "role": "admin", "start": "/workspace", "firstLogin": true }
+}

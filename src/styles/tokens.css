@@ -1,0 +1,232 @@
+/*
+ * Semantic tokens named by job, never by hue (CMP-COLOR-03), with modes in the
+ * semantic layer (CMP-COLOR-02). Values are placeholders for the prototype;
+ * the real token set is the colors spec.
+ */
+:root {
+  --font-sans: Roboto, system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+  /* Material Symbols weight for every icon (100 to 700). */
+  --icon-weight: 300;
+
+  --surface-page: #ffffff;
+  --surface-rail: #f3f4f6;
+  --surface-panel: #f8f9fa;
+  --surface-raised: #ffffff;
+  --surface-sunken: #eceef1;
+
+  --text-primary: #16181d;
+  --text-secondary: #4b5160;
+  --text-tertiary: #6b7280;
+  --text-disabled: #9aa0ab;
+
+  --border-subtle: #e2e5ea;
+  --border-strong: #c6cbd3;
+
+  --accent: #1f5eff;
+  --on-accent: #ffffff;
+
+  --nav-selected-bg: #dfe8ff;
+  --nav-on-selected: #0b3bbf;
+  --nav-missing-border: #aeb6c4;
+
+  --state-hovered: rgba(16, 24, 40, 0.08);
+  --state-pressed: rgba(16, 24, 40, 0.12);
+  --focus-ring: #1f5eff;
+
+  --status-info-container: #e3f0ff;
+  --on-status-info-container: #0b3bbf;
+  --status-warning-container: #fff1d6;
+  --on-status-warning-container: #7a4d00;
+
+  --scope-portfolio-bg: #e8f1ff;
+  --scope-on-portfolio: #0b3bbf;
+  --scope-property-bg: #e6f6ee;
+  --scope-on-property: #0b6b3a;
+
+  --shadow-raised: 0 8px 24px rgba(16, 24, 40, 0.16), 0 1px 2px rgba(16, 24, 40, 0.08);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --rail-width: 52px;
+  --panel-width: 288px;
+  --topbar-height: 52px;
+  --drawer-width: 360px;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --surface-page: #121418;
+    --surface-rail: #0c0e12;
+    --surface-panel: #171a20;
+    --surface-raised: #1f232b;
+    --surface-sunken: #0f1115;
+
+    --text-primary: #eef0f4;
+    --text-secondary: #b6bcc8;
+    --text-tertiary: #8e95a3;
+    --text-disabled: #5f6675;
+
+    --border-subtle: #262b34;
+    --border-strong: #3a414d;
+
+    --accent: #7aa2ff;
+    --on-accent: #0b1a44;
+
+    --nav-selected-bg: #223464;
+    --nav-on-selected: #c9d8ff;
+    --nav-missing-border: #4a5363;
+
+    --state-hovered: rgba(255, 255, 255, 0.08);
+    --state-pressed: rgba(255, 255, 255, 0.12);
+    --focus-ring: #9bb8ff;
+
+    --status-info-container: #1c2b52;
+    --on-status-info-container: #c9d8ff;
+    --status-warning-container: #4a3410;
+    --on-status-warning-container: #ffd68a;
+
+    --scope-portfolio-bg: #1c2b52;
+    --scope-on-portfolio: #c9d8ff;
+    --scope-property-bg: #143a28;
+    --scope-on-property: #b7ecd0;
+
+    --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --surface-page: #121418;
+  --surface-rail: #0c0e12;
+  --surface-panel: #171a20;
+  --surface-raised: #1f232b;
+  --surface-sunken: #0f1115;
+
+  --text-primary: #eef0f4;
+  --text-secondary: #b6bcc8;
+  --text-tertiary: #8e95a3;
+  --text-disabled: #5f6675;
+
+  --border-subtle: #262b34;
+  --border-strong: #3a414d;
+
+  --accent: #7aa2ff;
+  --on-accent: #0b1a44;
+
+  --nav-selected-bg: #223464;
+  --nav-on-selected: #c9d8ff;
+  --nav-missing-border: #4a5363;
+
+  --state-hovered: rgba(255, 255, 255, 0.08);
+  --state-pressed: rgba(255, 255, 255, 0.12);
+  --focus-ring: #9bb8ff;
+
+  --status-info-container: #1c2b52;
+  --on-status-info-container: #c9d8ff;
+  --status-warning-container: #4a3410;
+  --on-status-warning-container: #ffd68a;
+
+  --scope-portfolio-bg: #1c2b52;
+  --scope-on-portfolio: #c9d8ff;
+  --scope-property-bg: #143a28;
+  --scope-on-property: #b7ecd0;
+
+  --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+/* ---------- Prototype 02 additions: status, data states and chart colour (CMP-COLOR) ---------- */
+:root {
+  --status-success-container: #e3f5ea;
+  --on-status-success-container: #0d5f32;
+  --status-danger-container: #fde7e7;
+  --on-status-danger-container: #9b1c1c;
+  --status-neutral-container: #eef0f3;
+  --on-status-neutral-container: #3d4452;
+  --status-success: #1f9254;
+  --status-warning: #c98a00;
+  --status-danger: #d23b3b;
+
+  --chart-1: #2f6bff;
+  --chart-2: #14a38b;
+  --chart-3: #e08a1e;
+  --chart-4: #9b5de5;
+  --chart-5: #d6457a;
+  --chart-6: #5c6b80;
+  --chart-grid: #e6e9ee;
+  --chart-axis: #6b7280;
+  --chart-estimated: #9db8ff;
+  --chart-missing: #c9ced6;
+  --chart-target: #d23b3b;
+  --writer-client: #e08a1e;
+  --writer-enertiv: #2f6bff;
+  --writer-both: #d23b3b;
+  --writer-missing: #d9dde3;
+  --highlight: rgba(47, 107, 255, 0.14);
+  --highlight-ring: #2f6bff;
+  --overlay-scrim: rgba(10, 14, 22, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --status-success-container: #123824;
+    --on-status-success-container: #a8e8c3;
+    --status-danger-container: #4a1717;
+    --on-status-danger-container: #ffb4b4;
+    --status-neutral-container: #262b34;
+    --on-status-neutral-container: #c6ccd6;
+    --status-success: #3fbf7a;
+    --status-warning: #e6a826;
+    --status-danger: #f06363;
+    --chart-1: #7aa2ff;
+    --chart-2: #3cc9ae;
+    --chart-3: #f0a54b;
+    --chart-4: #b88cf0;
+    --chart-5: #f07aa3;
+    --chart-6: #93a1b5;
+    --chart-grid: #2a303a;
+    --chart-axis: #8e95a3;
+    --chart-estimated: #3d5a99;
+    --chart-missing: #3a414d;
+    --chart-target: #f06363;
+    --writer-client: #f0a54b;
+    --writer-enertiv: #7aa2ff;
+    --writer-both: #f06363;
+    --writer-missing: #343a45;
+    --highlight: rgba(122, 162, 255, 0.18);
+    --highlight-ring: #7aa2ff;
+    --overlay-scrim: rgba(0, 0, 0, 0.55);
+  }
+}
+:root[data-theme='dark'] {
+  --status-success-container: #123824;
+  --on-status-success-container: #a8e8c3;
+  --status-danger-container: #4a1717;
+  --on-status-danger-container: #ffb4b4;
+  --status-neutral-container: #262b34;
+  --on-status-neutral-container: #c6ccd6;
+  --status-success: #3fbf7a;
+  --status-warning: #e6a826;
+  --status-danger: #f06363;
+  --chart-1: #7aa2ff;
+  --chart-2: #3cc9ae;
+  --chart-3: #f0a54b;
+  --chart-4: #b88cf0;
+  --chart-5: #f07aa3;
+  --chart-6: #93a1b5;
+  --chart-grid: #2a303a;
+  --chart-axis: #8e95a3;
+  --chart-estimated: #3d5a99;
+  --chart-missing: #3a414d;
+  --chart-target: #f06363;
+  --writer-client: #f0a54b;
+  --writer-enertiv: #7aa2ff;
+  --writer-both: #f06363;
+  --writer-missing: #343a45;
+  --highlight: rgba(122, 162, 255, 0.18);
+  --highlight-ring: #7aa2ff;
+  --overlay-scrim: rgba(0, 0, 0, 0.55);
+}

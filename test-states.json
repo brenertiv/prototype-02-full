@@ -1,0 +1,18 @@
+{
+  "ST-P07": { "scenario": "SC-5", "persona": "none", "role": "admin", "start": "/workspace", "firstLogin": true },
+  "ST-D09": { "scenario": "SC-1", "persona": "pm", "role": "operator", "start": "/building-info/data-health?family=Utility%20logins" },
+  "ST-D10": { "scenario": "SC-2", "persona": "pm", "role": "operator", "start": "/building-info/data-health?family=Meters" },
+  "ST-D20": { "scenario": "SC-1", "persona": "sl", "role": "admin", "start": "/building-info/bills?view=accounts" },
+  "ST-E03": { "scenario": "SC-1", "persona": "am", "role": "admin", "start": "/workspace/capital-projects" },
+  "ST-E06": { "scenario": "SC-2", "persona": "none", "role": "vendor", "start": "/workspace" },
+  "ST-N02": { "scenario": "SC-2", "persona": "sl", "role": "admin", "start": "/tenant-billing" },
+  "ST-N05": { "scenario": "SC-2", "persona": "pm", "role": "operator", "start": "/account/profile" },
+  "ST-Q08": { "scenario": "SC-1", "persona": "am", "role": "admin", "start": "/building-info/buildings/b-001?tab=power" },
+  "ST-Q14": { "scenario": "SC-1", "persona": "sl", "role": "admin", "start": "/building-info/buildings/b-005?tab=utilities" },
+  "ST-S01": { "scenario": "SC-4", "persona": "pm", "role": "admin", "start": "/workspace" },
+  "ST-W01": { "scenario": "SC-2", "persona": "sl", "role": "admin", "start": "/workspace", "genDelayMs": 12000 },
+  "ST-W04": { "scenario": "SC-2", "persona": "sl", "role": "admin", "start": "/workspace", "genFail": true },
+  "ST-W12": { "scenario": "SC-1", "persona": "am", "role": "admin", "start": "/workspace/capital-projects" },
+  "ST-X01": { "scenario": "SC-2", "persona": "sl", "role": "admin", "start": "/building-info/buildings", "latencyMs": 2500 },
+  "ST-X02": { "scenario": "SC-2", "persona": "sl", "role": "admin", "start": "/building-info/buildings", "fail": ["*"] }
+}
