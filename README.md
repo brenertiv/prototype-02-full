@@ -13,6 +13,10 @@ Specs it follows: `02-building/01-prototype-plan.md`, every spec in
 `journeys-and-prototypes/prototype-data.md` for scenarios and state IDs. The
 test contract is `skills/kilowatt-prototype-testing/test-config.md`.
 
+## Live site
+
+https://brenertiv.github.io/prototype-02-full/ — rebuilt by `.github/workflows/pages.yml` on every push to `main`. The repo and the site are public, so the site runs on synthetic data only: Pages has no password and no snapshot token.
+
 ## Run it
 
 ```bash
