@@ -126,7 +126,8 @@
   bottom: 8px;
   background: var(--shell-frame);
   border: 1px solid var(--shell-divider);
-  border-radius: 12px;
+  /* Concentric corners: frame 12px = panel 8px + 4px gap (3px + the frame's 1px border) */
+  border-radius: var(--radius-sm);
 }
 .panel-header {
   align-items: center;
