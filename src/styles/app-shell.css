@@ -192,9 +192,9 @@
   flex: 1;
   min-height: 0;
   padding: 24px 28px 48px;
-  border: 1px solid var(--shell-divider);
+  border: 0;
   border-radius: 8px;
-  /* The canvas sits on the frame's own surface; its border alone sets it apart */
+  /* The canvas sits on the frame's own surface, with no border of its own */
   background: var(--shell-frame);
   /* Cards on the canvas take the paper surface */
   --surface-raised: var(--shell-chip-strong);
