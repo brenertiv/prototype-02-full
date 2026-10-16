@@ -33,12 +33,12 @@
 }
 .bi-subhead {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   margin: 18px 0 8px;
 }
 .bi-big {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   margin: 2px 0;
 }
 .bi-card-p {
@@ -62,7 +62,7 @@
 }
 .bi-kpi-small {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .bi-plain-list {
   display: flex;
@@ -121,7 +121,7 @@
   background: var(--status-success-container);
   border-radius: 4px;
   padding: 1px 6px;
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
 }
 .bi-capacity-only {
@@ -225,7 +225,7 @@ span.bi-space {
 }
 .bi-space-name {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -308,7 +308,7 @@ span.bi-space {
 }
 .bi-detail-sub {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   margin: 12px 0 4px;
 }
@@ -328,7 +328,7 @@ span.bi-space {
 }
 .bi-drawer-h {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   margin: 14px 0 4px;
   color: var(--text-secondary);
 }
@@ -463,7 +463,7 @@ span.bi-space {
 }
 .bi-wt-month.is-handover {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
 }
 .bi-wt-table td {
   padding: 0;
@@ -606,7 +606,7 @@ a.bi-wt-cell:focus-visible {
   color: var(--nav-on-selected);
   background: var(--nav-selected-bg);
   border-color: transparent;
-  font-weight: 600;
+  font-weight: 500;
 }
 .bi-unlock {
   border-top: 1px solid var(--border-subtle);
@@ -751,7 +751,7 @@ a.bi-wt-cell:focus-visible {
 }
 .bi-node-name {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   fill: var(--text-primary);
 }
 .bi-node-line {
@@ -763,7 +763,7 @@ a.bi-wt-cell:focus-visible {
 }
 .bi-node-line.is-warn {
   fill: var(--on-status-warning-container);
-  font-weight: 600;
+  font-weight: 500;
 }
 .bi-node-meta {
   font-size: 10px;
@@ -874,7 +874,7 @@ a.bi-wt-cell:focus-visible {
 }
 .bi-fieldset legend {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0 4px;
 }
 .bi-days {
@@ -920,7 +920,7 @@ a.bi-wt-cell:focus-visible {
 }
 .bi-pdf-total {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .bi-pdf-row {
   display: flex;

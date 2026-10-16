@@ -15,7 +15,7 @@
 }
 .btn--danger {
   background: var(--status-danger);
-  color: #fff;
+  color: var(--k-palette-error-contrastText);
 }
 .btn--sm {
   padding: 5px 10px;
@@ -55,7 +55,7 @@
 }
 .page-header h1 {
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   margin: 0;
 }
@@ -97,7 +97,7 @@
 }
 .section-head h2 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
 }
 .section-head p {
@@ -129,7 +129,7 @@
 }
 .card h3 {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0 0 8px;
 }
 .card--sunken {
@@ -189,7 +189,7 @@ a {
   color: var(--text-secondary);
   border-radius: 999px;
   padding: 0 6px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .filter-chip[aria-pressed='true'] {
   background: var(--nav-selected-bg);
@@ -359,7 +359,7 @@ a {
   position: sticky;
   top: 0;
   background: var(--surface-panel);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   white-space: nowrap;
   z-index: 1;
@@ -388,7 +388,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  font-weight: 600;
+  font-weight: 500;
   color: inherit;
 }
 .th-sort .msym {
@@ -427,7 +427,7 @@ a {
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 2px 8px 2px 6px;
   border-radius: 999px;
   white-space: nowrap;
@@ -537,7 +537,7 @@ a {
 .meter-text {
   position: relative;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   padding-left: 6px;
   line-height: 18px;
 }
@@ -566,7 +566,7 @@ a {
 }
 .kpi-value {
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.15;
   font-variant-numeric: tabular-nums;
@@ -641,7 +641,7 @@ a {
   margin-top: 6px;
 }
 .provenance-title {
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 4px;
 }
 .provenance li {
@@ -679,7 +679,7 @@ a {
   margin-top: 8px;
 }
 .empty-title {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
 }
 .empty-state--error > .msym {
@@ -840,7 +840,7 @@ a {
 .rank-value {
   text-align: right;
   font-variant-numeric: tabular-nums;
-  font-weight: 600;
+  font-weight: 500;
 }
 .rank-note {
   grid-column: 1 / -1;
@@ -910,7 +910,7 @@ a {
 }
 .detail-drawer-header h2 {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .detail-drawer-body {
   flex: 1;

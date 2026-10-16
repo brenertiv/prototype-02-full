@@ -318,7 +318,7 @@ code {
 }
 .panel-title h2 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -397,7 +397,7 @@ code {
   padding: 6px 8px;
   border-radius: var(--radius-sm);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -521,7 +521,7 @@ code {
 .chip {
   display: inline-block;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 1px 7px;
   border-radius: 999px;
   vertical-align: middle;
@@ -617,7 +617,7 @@ code {
   letter-spacing: 0.04em;
 }
 .scope-name {
-  font-weight: 600;
+  font-weight: 500;
 }
 .scope-count,
 .scope-path {
@@ -700,7 +700,7 @@ code {
 }
 .drawer-header h2 {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .drawer-binding {
   font-size: 12px;
@@ -767,7 +767,7 @@ code {
 .mobile-drawer-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--overlay-scrim);
 }
 .mobile-drawer-body.mobile-drawer-body--rail-only {
   width: auto;
@@ -796,7 +796,7 @@ code {
   box-shadow: var(--shadow-raised);
 }
 .modal::backdrop {
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--overlay-scrim);
 }
 .modal-header {
   display: flex;
@@ -806,7 +806,7 @@ code {
 }
 .modal-header h2 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .company-list {
   margin-top: 12px;
@@ -855,7 +855,7 @@ code {
 }
 .page h1 {
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   margin-bottom: 12px;
 }
@@ -942,7 +942,7 @@ code {
 }
 .upgrade-card h2 {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .upgrade-card .btn {
   align-self: flex-start;
@@ -1278,7 +1278,7 @@ code {
 .row-count {
   margin-left: auto;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   min-width: 20px;
   text-align: center;
   padding: 0 6px;

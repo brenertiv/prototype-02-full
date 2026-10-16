@@ -1,0 +1,160 @@
+/*
+ * Kilowatt component tier: how the prototype's components take the theme's roles, following
+ * Foundations › MUI departures and Guides › Rules (https://kilowatt-ui.vercel.app).
+ * Loaded last. Reads only the tokens in tokens.css.
+ */
+
+/* ---------- Surfaces by elevation ("Paper takes its surface from its elevation") ---------- */
+.rail {
+  background: var(--surface-rail);
+}
+.panel,
+.mobile-drawer-body {
+  background: var(--surface-nav);
+}
+.popover,
+.scope-nav,
+.proto-panel,
+.rail-tooltip {
+  background: var(--surface-menu);
+  box-shadow: var(--shadow-raised);
+  /* Elevation or outline, never both (Rules › One border per edge) */
+  border-color: transparent;
+}
+.modal,
+.detail-drawer,
+.drawer {
+  background: var(--surface-dialog);
+}
+.modal,
+.detail-drawer {
+  box-shadow: var(--shadow-dialog);
+  border-color: transparent;
+}
+.toast {
+  background: var(--surface-panel);
+  color: var(--text-primary);
+}
+.toast .text-btn {
+  color: var(--accent);
+}
+
+/* ---------- Typography (MUI's scale) ---------- */
+body {
+  font-family: var(--font-sans);
+}
+/* Page titles: h5 (24px, 400) */
+.page-header h1,
+.page h1 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.334;
+  letter-spacing: 0;
+}
+/* Section titles: subtitle1 at medium weight */
+.section-head h2,
+.card h3,
+.panel-title h2 {
+  font-weight: 500;
+}
+/* Big numbers: h4 (34px, 400) */
+.kpi-value {
+  font-size: 2.125rem;
+  font-weight: 400;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+}
+/* Overline */
+.eyebrow,
+.panel-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+}
+.muted {
+  color: var(--text-secondary);
+}
+
+/* ---------- Buttons ---------- */
+/* Contained: flat (disableElevation), regular weight, shown as written, theme radius */
+.btn {
+  min-height: 36px;
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: none;
+  box-shadow: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn:not(.btn--ghost):not(.btn--danger):hover {
+  background: var(--k-palette-primary-dark);
+}
+/* Outlined primary draws its outline in border.level3, the control border */
+.btn--ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--border-strong);
+  padding: 5px 15px;
+}
+.btn--ghost:hover {
+  background: var(--state-hovered);
+}
+.btn--sm {
+  min-height: 30px;
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+}
+.btn--ghost.btn--sm {
+  padding: 3px 9px;
+}
+.text-btn {
+  color: var(--accent);
+  font-weight: 400;
+  border-radius: var(--radius-sm);
+}
+/* Icon buttons take the theme radius instead of a circle */
+.icon-btn,
+.topbar-btn {
+  border-radius: var(--radius-sm);
+  color: var(--k-palette-action-active);
+}
+.primary-action {
+  font-weight: 400;
+}
+
+/* ---------- Links (MUI Link: primary, underlined) ---------- */
+a {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 2px;
+}
+a:hover {
+  text-decoration-color: currentColor;
+}
+.cell-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* ---------- Controls ---------- */
+.select-filter select,
+.field input,
+.field select,
+.field textarea,
+.search-field {
+  border-color: var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+}
+
+/* ---------- Navigation selected state (ListItemButton selected) ---------- */
+.row[aria-current='page'],
+.rail-item.is-active {
+  background: var(--nav-selected-bg);
+  color: var(--nav-on-selected);
+}

@@ -96,7 +96,7 @@
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 1px 8px;
   border-radius: 999px;
   background: var(--status-warning-container);
@@ -118,7 +118,7 @@
 .as-facts dd {
   margin: 0;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .as-items {
   margin: 0 0 8px;
@@ -154,7 +154,7 @@
   display: flex;
   gap: 6px;
   align-items: flex-start;
-  font-weight: 600;
+  font-weight: 500;
 }
 .as-created {
   display: flex;
@@ -199,7 +199,7 @@
 }
 .as-step--now {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
   background: var(--highlight);
 }
 .as-step--failed {

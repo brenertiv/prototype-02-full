@@ -82,7 +82,7 @@
   overflow-wrap: anywhere;
 }
 .is-unread .ntf-title {
-  font-weight: 600;
+  font-weight: 500;
 }
 .ntf-body {
   font-size: 13px;

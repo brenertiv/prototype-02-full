@@ -160,7 +160,7 @@
 .ws-comp-title h3 {
   margin: 0;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
 }
 .ws-comp-actions {
@@ -225,7 +225,7 @@
 .ws-big {
   display: block;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
@@ -351,7 +351,7 @@
 .ws-rank-value {
   text-align: right;
   font-variant-numeric: tabular-nums;
-  font-weight: 600;
+  font-weight: 500;
 }
 .ws-rank-note {
   grid-column: 2 / -1;
@@ -377,7 +377,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  font-weight: 600;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 .ws-insight-value .muted {
@@ -404,7 +404,7 @@
   flex-wrap: wrap;
 }
 .ws-group-name {
-  font-weight: 600;
+  font-weight: 500;
   margin-right: auto;
 }
 
@@ -427,7 +427,7 @@
   align-items: start;
 }
 .ws-goal-name {
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
 }
 .ws-goal-status {
@@ -490,7 +490,7 @@
   margin: 0 0 8px;
 }
 .ws-notbought-title {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Reports */
@@ -616,7 +616,7 @@
 }
 .ws-fieldset legend {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: 6px;
 }
@@ -696,7 +696,7 @@
 }
 .ws-steps li.is-current {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
 }
 .ws-steps li.is-current > span {
   background: var(--accent);

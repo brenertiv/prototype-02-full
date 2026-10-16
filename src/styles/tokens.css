@@ -1,54 +1,168 @@
 /*
- * Semantic tokens named by job, never by hue (CMP-COLOR-03), with modes in the
- * semantic layer (CMP-COLOR-02). Values are placeholders for the prototype;
- * the real token set is the colors spec.
+ * Kilowatt theme (https://kilowatt-ui.vercel.app): stock Material UI plus Enertiv's departures.
+ * Three tiers, as Kilowatt's rules ask:
+ *   1. Primitives: the ramps (Foundations › Color › Ramps). The only place a hex value lives.
+ *   2. Semantic: MUI's palette roles, named after their theme paths (--k-palette-…), per scheme.
+ *   3. The prototype's job-named tokens (CMP-COLOR-03), each read from a role in tier 2.
+ * Components read tier 3 only. Values the storybook doesn't define (chart colours, the writer
+ * timeline, layout sizes) are marked "Prototype".
  */
 :root {
-  --font-sans: Roboto, system-ui, sans-serif;
+  /* ---------- 1. Primitives (src/mui/colors.ts) ---------- */
+  --k-slate-50: #ffffff;
+  --k-slate-100: #f9fafc;
+  --k-slate-200: #f3f6f9;
+  --k-slate-300: #edf1f5;
+  --k-slate-400: #e7ecf2;
+  --k-slate-500: #e2e8ef;
+  --k-slate-700: #d6dee8;
+  --k-slate-900: #cad5e2;
+  --k-slate-950: #768699;
+  --k-navy-200: #6ca2cf;
+  --k-navy-300: #4f7da3;
+  --k-navy-400: #426a8a;
+  --k-navy-500: #365670;
+  --k-navy-600: #294a5f;
+  --k-navy-700: #1b3e4f;
+  --k-navy-800: #142f3c;
+  --k-navy-900: #0d2029;
+  --k-navy-950: #09161c;
+  --k-brand-300: #74c4eb;
+  --k-brand-500: #2ea6e1;
+  --k-brand-700: #1c6487;
+  --k-orange-700: #952f0c;
+  --k-yellow-400: #ffb44c;
+  /* MUI's own ramps (@mui/material/colors), at the steps Kilowatt picks */
+  --k-red-100: #ffcdd2;
+  --k-red-800: #c62828;
+  --k-purple-100: #e1bee7;
+  --k-purple-500: #9c27b0;
+  --k-green-300: #81c784;
+  --k-green-900: #1b5e20;
+
+  /* ---------- 2. Semantic: light scheme ---------- */
+  --k-palette-primary-main: var(--k-navy-700);
+  --k-palette-primary-dark: var(--k-navy-900);
+  --k-palette-primary-contrastText: #fff;
+  --k-palette-secondary-main: var(--k-brand-700);
+  --k-palette-secondary-light: var(--k-brand-500);
+  --k-palette-secondary-contrastText: #fff;
+  --k-palette-error-main: var(--k-red-800);
+  --k-palette-error-contrastText: #fff;
+  --k-palette-warning-main: var(--k-orange-700);
+  --k-palette-info-main: var(--k-purple-500);
+  --k-palette-success-main: var(--k-green-900);
+  --k-palette-text-primary: rgba(0, 0, 0, 0.87);
+  --k-palette-text-secondary: rgba(0, 0, 0, 0.6);
+  --k-palette-text-disabled: rgba(0, 0, 0, 0.38);
+  --k-palette-background-level0: var(--k-slate-400);
+  --k-palette-background-level1: var(--k-slate-300);
+  --k-palette-background-level2: var(--k-slate-200);
+  --k-palette-background-level3: var(--k-slate-100);
+  --k-palette-background-level4: var(--k-slate-50);
+  --k-palette-border-level0: var(--k-slate-500);
+  --k-palette-border-level1: var(--k-slate-700);
+  --k-palette-border-level2: var(--k-slate-900);
+  --k-palette-border-level3: var(--k-slate-950);
+  --k-palette-action-active: rgba(0, 0, 0, 0.54);
+  --k-palette-action-hover: rgba(0, 0, 0, 0.04);
+  --k-palette-action-selected: rgba(0, 0, 0, 0.08);
+  --k-palette-action-focus: rgba(0, 0, 0, 0.12);
+  --k-palette-action-disabledBackground: rgba(0, 0, 0, 0.12);
+
+  /* MUI defaults Kilowatt keeps */
+  --k-shape-borderRadius: 8px;
+  --k-shadow-1: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  --k-shadow-8: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  --k-shadow-24: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  --k-backdrop: rgba(0, 0, 0, 0.5);
+
+  /* ---------- 3. The prototype's tokens, read from the roles ---------- */
+  --font-sans: Roboto, Helvetica, Arial, sans-serif;
   --font-mono: 'Roboto Mono', ui-monospace, monospace;
-  /* Material Symbols weight for every icon (100 to 700). */
   --icon-weight: 300;
 
-  --surface-page: #ffffff;
-  --surface-rail: #f3f4f6;
-  --surface-panel: #f8f9fa;
-  --surface-raised: #ffffff;
-  --surface-sunken: #eceef1;
+  /* Surfaces by elevation: page level0, cards level1, app chrome level2, menus level3, drawers and dialogs level4 */
+  --surface-page: var(--k-palette-background-level0);
+  --surface-raised: var(--k-palette-background-level1);
+  --surface-panel: var(--k-palette-background-level2);
+  --surface-menu: var(--k-palette-background-level3);
+  --surface-dialog: var(--k-palette-background-level4);
+  --surface-rail: var(--k-palette-background-level3);
+  --surface-nav: var(--k-palette-background-level4);
+  --surface-sunken: var(--k-palette-background-level0);
 
-  --text-primary: #16181d;
-  --text-secondary: #4b5160;
-  --text-tertiary: #6b7280;
-  --text-disabled: #9aa0ab;
+  --text-primary: var(--k-palette-text-primary);
+  --text-secondary: var(--k-palette-text-secondary);
+  /* MUI has no tertiary text; disabled (0.38) fails 4.5:1, so muted text uses secondary */
+  --text-tertiary: var(--k-palette-text-secondary);
+  --text-disabled: var(--k-palette-text-disabled);
 
-  --border-subtle: #e2e5ea;
-  --border-strong: #c6cbd3;
+  --border-subtle: var(--k-palette-border-level1);
+  --border-quiet: var(--k-palette-border-level0);
+  --border-strong: var(--k-palette-border-level3);
 
-  --accent: #1f5eff;
-  --on-accent: #ffffff;
+  --accent: var(--k-palette-primary-main);
+  --on-accent: var(--k-palette-primary-contrastText);
 
-  --nav-selected-bg: #dfe8ff;
-  --nav-on-selected: #0b3bbf;
-  --nav-missing-border: #aeb6c4;
+  --nav-selected-bg: color-mix(in srgb, var(--k-palette-primary-main) 8%, transparent);
+  --nav-on-selected: var(--k-palette-primary-main);
+  --nav-missing-border: var(--k-palette-border-level2);
 
-  --state-hovered: rgba(16, 24, 40, 0.08);
-  --state-pressed: rgba(16, 24, 40, 0.12);
-  --focus-ring: #1f5eff;
+  --state-hovered: var(--k-palette-action-hover);
+  --state-pressed: var(--k-palette-action-focus);
+  --focus-ring: var(--k-palette-primary-main);
 
-  --status-info-container: #e3f0ff;
-  --on-status-info-container: #0b3bbf;
-  --status-warning-container: #fff1d6;
-  --on-status-warning-container: #7a4d00;
+  --status-info: var(--k-palette-info-main);
+  --status-success: var(--k-palette-success-main);
+  --status-warning: var(--k-palette-warning-main);
+  --status-danger: var(--k-palette-error-main);
+  --status-info-container: color-mix(in srgb, var(--k-palette-info-main) 10%, transparent);
+  --on-status-info-container: var(--k-palette-info-main);
+  --status-success-container: color-mix(in srgb, var(--k-palette-success-main) 10%, transparent);
+  --on-status-success-container: var(--k-palette-success-main);
+  --status-warning-container: color-mix(in srgb, var(--k-palette-warning-main) 10%, transparent);
+  --on-status-warning-container: var(--k-palette-warning-main);
+  --status-danger-container: color-mix(in srgb, var(--k-palette-error-main) 10%, transparent);
+  --on-status-danger-container: var(--k-palette-error-main);
+  --status-neutral-container: var(--k-palette-action-selected);
+  --on-status-neutral-container: var(--k-palette-text-secondary);
 
-  --scope-portfolio-bg: #e8f1ff;
-  --scope-on-portfolio: #0b3bbf;
-  --scope-property-bg: #e6f6ee;
-  --scope-on-property: #0b6b3a;
 
-  --shadow-raised: 0 8px 24px rgba(16, 24, 40, 0.16), 0 1px 2px rgba(16, 24, 40, 0.08);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
+  --scope-portfolio-bg: color-mix(in srgb, var(--k-palette-primary-main) 10%, transparent);
+  --scope-on-portfolio: var(--k-palette-primary-main);
+  --scope-property-bg: color-mix(in srgb, var(--k-palette-secondary-main) 12%, transparent);
+  --scope-on-property: var(--k-palette-secondary-main);
 
+  --highlight: color-mix(in srgb, var(--k-palette-secondary-main) 14%, transparent);
+  --highlight-ring: var(--k-palette-secondary-main);
+  --overlay-scrim: var(--k-backdrop);
+
+  --shadow-raised: var(--k-shadow-8);
+  --shadow-dialog: var(--k-shadow-24);
+  /* One radius (Kilowatt shape-radius departure); chips and avatars stay pills and circles */
+  --radius-sm: var(--k-shape-borderRadius);
+  --radius-md: var(--k-shape-borderRadius);
+  --radius-lg: var(--k-shape-borderRadius);
+
+  /* Prototype: chart colours (not in the storybook) */
+  --chart-1: var(--k-brand-500);
+  --chart-2: #14a38b;
+  --chart-3: #e08a1e;
+  --chart-4: #9b5de5;
+  --chart-5: #d6457a;
+  --chart-6: #5c6b80;
+  --chart-grid: var(--k-palette-border-level0);
+  --chart-axis: var(--k-palette-text-secondary);
+  --chart-estimated: color-mix(in srgb, var(--k-brand-500) 40%, transparent);
+  --chart-missing: var(--k-palette-border-level2);
+  --chart-target: var(--k-palette-error-main);
+  --writer-client: #e08a1e;
+  --writer-enertiv: var(--k-brand-500);
+  --writer-both: var(--k-palette-error-main);
+  --writer-missing: var(--k-palette-border-level1);
+
+  /* Prototype: layout */
   --rail-width: 52px;
   --panel-width: 288px;
   --topbar-height: 52px;
@@ -57,176 +171,78 @@
   color-scheme: light;
 }
 
+/* ---------- 2. Semantic: dark scheme (navy surfaces; primary is a light neutral) ---------- */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --surface-page: #121418;
-    --surface-rail: #0c0e12;
-    --surface-panel: #171a20;
-    --surface-raised: #1f232b;
-    --surface-sunken: #0f1115;
-
-    --text-primary: #eef0f4;
-    --text-secondary: #b6bcc8;
-    --text-tertiary: #8e95a3;
-    --text-disabled: #5f6675;
-
-    --border-subtle: #262b34;
-    --border-strong: #3a414d;
-
-    --accent: #7aa2ff;
-    --on-accent: #0b1a44;
-
-    --nav-selected-bg: #223464;
-    --nav-on-selected: #c9d8ff;
-    --nav-missing-border: #4a5363;
-
-    --state-hovered: rgba(255, 255, 255, 0.08);
-    --state-pressed: rgba(255, 255, 255, 0.12);
-    --focus-ring: #9bb8ff;
-
-    --status-info-container: #1c2b52;
-    --on-status-info-container: #c9d8ff;
-    --status-warning-container: #4a3410;
-    --on-status-warning-container: #ffd68a;
-
-    --scope-portfolio-bg: #1c2b52;
-    --scope-on-portfolio: #c9d8ff;
-    --scope-property-bg: #143a28;
-    --scope-on-property: #b7ecd0;
-
-    --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme='dark'] {
-  --surface-page: #121418;
-  --surface-rail: #0c0e12;
-  --surface-panel: #171a20;
-  --surface-raised: #1f232b;
-  --surface-sunken: #0f1115;
-
-  --text-primary: #eef0f4;
-  --text-secondary: #b6bcc8;
-  --text-tertiary: #8e95a3;
-  --text-disabled: #5f6675;
-
-  --border-subtle: #262b34;
-  --border-strong: #3a414d;
-
-  --accent: #7aa2ff;
-  --on-accent: #0b1a44;
-
-  --nav-selected-bg: #223464;
-  --nav-on-selected: #c9d8ff;
-  --nav-missing-border: #4a5363;
-
-  --state-hovered: rgba(255, 255, 255, 0.08);
-  --state-pressed: rgba(255, 255, 255, 0.12);
-  --focus-ring: #9bb8ff;
-
-  --status-info-container: #1c2b52;
-  --on-status-info-container: #c9d8ff;
-  --status-warning-container: #4a3410;
-  --on-status-warning-container: #ffd68a;
-
-  --scope-portfolio-bg: #1c2b52;
-  --scope-on-portfolio: #c9d8ff;
-  --scope-property-bg: #143a28;
-  --scope-on-property: #b7ecd0;
-
-  --shadow-raised: 0 8px 24px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.4);
-  color-scheme: dark;
-}
-
-/* ---------- Prototype 02 additions: status, data states and chart colour (CMP-COLOR) ---------- */
-:root {
-  --status-success-container: #e3f5ea;
-  --on-status-success-container: #0d5f32;
-  --status-danger-container: #fde7e7;
-  --on-status-danger-container: #9b1c1c;
-  --status-neutral-container: #eef0f3;
-  --on-status-neutral-container: #3d4452;
-  --status-success: #1f9254;
-  --status-warning: #c98a00;
-  --status-danger: #d23b3b;
-
-  --chart-1: #2f6bff;
-  --chart-2: #14a38b;
-  --chart-3: #e08a1e;
-  --chart-4: #9b5de5;
-  --chart-5: #d6457a;
-  --chart-6: #5c6b80;
-  --chart-grid: #e6e9ee;
-  --chart-axis: #6b7280;
-  --chart-estimated: #9db8ff;
-  --chart-missing: #c9ced6;
-  --chart-target: #d23b3b;
-  --writer-client: #e08a1e;
-  --writer-enertiv: #2f6bff;
-  --writer-both: #d23b3b;
-  --writer-missing: #d9dde3;
-  --highlight: rgba(47, 107, 255, 0.14);
-  --highlight-ring: #2f6bff;
-  --overlay-scrim: rgba(10, 14, 22, 0.35);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --status-success-container: #123824;
-    --on-status-success-container: #a8e8c3;
-    --status-danger-container: #4a1717;
-    --on-status-danger-container: #ffb4b4;
-    --status-neutral-container: #262b34;
-    --on-status-neutral-container: #c6ccd6;
-    --status-success: #3fbf7a;
-    --status-warning: #e6a826;
-    --status-danger: #f06363;
-    --chart-1: #7aa2ff;
+    --k-palette-primary-main: var(--k-slate-100);
+    --k-palette-primary-dark: var(--k-slate-300);
+    --k-palette-primary-contrastText: var(--k-navy-950);
+    --k-palette-secondary-main: var(--k-brand-300);
+    --k-palette-secondary-contrastText: rgba(0, 0, 0, 0.87);
+    --k-palette-error-main: var(--k-red-100);
+  --k-palette-error-contrastText: rgba(0, 0, 0, 0.87);
+    --k-palette-warning-main: var(--k-yellow-400);
+    --k-palette-info-main: var(--k-purple-100);
+    --k-palette-success-main: var(--k-green-300);
+    --k-palette-text-primary: #fff;
+    --k-palette-text-secondary: rgba(255, 255, 255, 0.7);
+    --k-palette-text-disabled: rgba(255, 255, 255, 0.5);
+    --k-palette-background-level0: var(--k-navy-950);
+    --k-palette-background-level1: var(--k-navy-900);
+    --k-palette-background-level2: var(--k-navy-800);
+    --k-palette-background-level3: var(--k-navy-700);
+    --k-palette-background-level4: var(--k-navy-600);
+    --k-palette-border-level0: var(--k-navy-500);
+    --k-palette-border-level1: var(--k-navy-400);
+    --k-palette-border-level2: var(--k-navy-300);
+    --k-palette-border-level3: var(--k-navy-200);
+    --k-palette-action-active: #fff;
+    --k-palette-action-hover: rgba(255, 255, 255, 0.08);
+    --k-palette-action-selected: rgba(255, 255, 255, 0.16);
+    --k-palette-action-focus: rgba(255, 255, 255, 0.12);
+    --k-palette-action-disabledBackground: rgba(255, 255, 255, 0.12);
     --chart-2: #3cc9ae;
     --chart-3: #f0a54b;
     --chart-4: #b88cf0;
     --chart-5: #f07aa3;
     --chart-6: #93a1b5;
-    --chart-grid: #2a303a;
-    --chart-axis: #8e95a3;
-    --chart-estimated: #3d5a99;
-    --chart-missing: #3a414d;
-    --chart-target: #f06363;
     --writer-client: #f0a54b;
-    --writer-enertiv: #7aa2ff;
-    --writer-both: #f06363;
-    --writer-missing: #343a45;
-    --highlight: rgba(122, 162, 255, 0.18);
-    --highlight-ring: #7aa2ff;
-    --overlay-scrim: rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
   }
 }
 :root[data-theme='dark'] {
-  --status-success-container: #123824;
-  --on-status-success-container: #a8e8c3;
-  --status-danger-container: #4a1717;
-  --on-status-danger-container: #ffb4b4;
-  --status-neutral-container: #262b34;
-  --on-status-neutral-container: #c6ccd6;
-  --status-success: #3fbf7a;
-  --status-warning: #e6a826;
-  --status-danger: #f06363;
-  --chart-1: #7aa2ff;
+  --k-palette-primary-main: var(--k-slate-100);
+  --k-palette-primary-dark: var(--k-slate-300);
+  --k-palette-primary-contrastText: var(--k-navy-950);
+  --k-palette-secondary-main: var(--k-brand-300);
+  --k-palette-secondary-contrastText: rgba(0, 0, 0, 0.87);
+  --k-palette-error-main: var(--k-red-100);
+  --k-palette-error-contrastText: rgba(0, 0, 0, 0.87);
+  --k-palette-warning-main: var(--k-yellow-400);
+  --k-palette-info-main: var(--k-purple-100);
+  --k-palette-success-main: var(--k-green-300);
+  --k-palette-text-primary: #fff;
+  --k-palette-text-secondary: rgba(255, 255, 255, 0.7);
+  --k-palette-text-disabled: rgba(255, 255, 255, 0.5);
+  --k-palette-background-level0: var(--k-navy-950);
+  --k-palette-background-level1: var(--k-navy-900);
+  --k-palette-background-level2: var(--k-navy-800);
+  --k-palette-background-level3: var(--k-navy-700);
+  --k-palette-background-level4: var(--k-navy-600);
+  --k-palette-border-level0: var(--k-navy-500);
+  --k-palette-border-level1: var(--k-navy-400);
+  --k-palette-border-level2: var(--k-navy-300);
+  --k-palette-border-level3: var(--k-navy-200);
+  --k-palette-action-active: #fff;
+  --k-palette-action-hover: rgba(255, 255, 255, 0.08);
+  --k-palette-action-selected: rgba(255, 255, 255, 0.16);
+  --k-palette-action-focus: rgba(255, 255, 255, 0.12);
+  --k-palette-action-disabledBackground: rgba(255, 255, 255, 0.12);
   --chart-2: #3cc9ae;
   --chart-3: #f0a54b;
   --chart-4: #b88cf0;
   --chart-5: #f07aa3;
   --chart-6: #93a1b5;
-  --chart-grid: #2a303a;
-  --chart-axis: #8e95a3;
-  --chart-estimated: #3d5a99;
-  --chart-missing: #3a414d;
-  --chart-target: #f06363;
   --writer-client: #f0a54b;
-  --writer-enertiv: #7aa2ff;
-  --writer-both: #f06363;
-  --writer-missing: #343a45;
-  --highlight: rgba(122, 162, 255, 0.18);
-  --highlight-ring: #7aa2ff;
-  --overlay-scrim: rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
 }
