@@ -62,7 +62,7 @@ export function TopBar({ phone, onOpenMenu }: Props) {
 function ScopeIndicator({ phone }: { phone: boolean }) {
   const scope = useScopeInfo();
   const { data, accessible } = useData();
-  const { setScope } = useNav();
+  const { setScope, navigate, to } = useNav();
   const [open, setOpen] = useState(false);
   // ST-S01 single-property account; ST-S07 a user whose access is one building.
   const single = data.buildings.length === 1 || accessible.size === 1;
@@ -82,17 +82,22 @@ function ScopeIndicator({ phone }: { phone: boolean }) {
     groupChip = { type: 'Portfolio', name: `All ${scope.buildingIds.length} properties`, scopeId: 'portfolio', path: 'Portfolio', count: scope.buildingIds.length };
   }
 
+  const buildingId = scope.kind === 'property' ? scope.id.slice('property-'.length) : null;
+
+  // Property chip, a split button: the label opens the building's page; the X goes back to the portfolio.
   const propertyChip = scope.kind === 'property' && (
     <div className="scope-chip scope-chip--property" title={`${groupChip.path} › ${scope.name}`}>
-      <span className="scope-chip-thumb" aria-hidden="true">
-        <Icon name={LEVEL_ICON.property} />
-      </span>
-      <span className="scope-chip-text">
-        <span className="scope-chip-label">Property</span>
-        <span className="scope-chip-name">{scope.name}</span>
-      </span>
+      <button type="button" className="scope-chip-main" aria-label={`Open ${scope.name}`} onClick={() => navigate(to(`/building-info/buildings/${buildingId}`))}>
+        <span className="scope-chip-thumb" aria-hidden="true">
+          <Icon name={LEVEL_ICON.property} />
+        </span>
+        <span className="scope-chip-text">
+          <span className="scope-chip-label">Property</span>
+          <span className="scope-chip-name">{scope.name}</span>
+        </span>
+      </button>
       {!single && (
-        <button type="button" className="scope-chip-btn" aria-label={`Go up to ${groupChip.name}`} title={`Go up to ${groupChip.name}`} onClick={() => setScope(groupChip.scopeId)}>
+        <button type="button" className="scope-chip-btn" aria-label="Back to the portfolio" title="Back to the portfolio" onClick={() => setScope('portfolio')}>
           <Icon name="close" />
         </button>
       )}
@@ -105,45 +110,38 @@ function ScopeIndicator({ phone }: { phone: boolean }) {
   const groupIsCurrent = scope.kind !== 'property';
   return (
     <nav className="scope" aria-label="Scope">
+      {/* Group chip, a split button: the label sets that group (or the portfolio) as the scope; the stepper opens the navigator */}
       {(!phone || groupIsCurrent) && (
         <div className={`scope-chip ${groupIsCurrent ? 'is-current' : ''}`} title={groupChip.path}>
-          <span className="scope-chip-icon" aria-hidden="true">
-            <Icon name={scope.kind === 'portfolio' ? LEVEL_ICON.portfolio : 'folder_open'} />
-          </span>
-          {groupIsCurrent ? (
+          <button
+            type="button"
+            className="scope-chip-main"
+            aria-label={groupIsCurrent ? `${groupChip.type} ${groupChip.name}, ${groupChip.count} properties` : `Go up to ${groupChip.type} ${groupChip.name}`}
+            aria-current={groupIsCurrent ? 'true' : undefined}
+            onClick={() => setScope(groupChip.scopeId)}
+          >
+            <span className="scope-chip-icon" aria-hidden="true">
+              <Icon name={scope.kind === 'portfolio' ? LEVEL_ICON.portfolio : 'folder_open'} />
+            </span>
             <span className="scope-chip-text">
               <span className="scope-chip-label">{groupChip.type}</span>
               <span className="scope-chip-name">{groupChip.name}</span>
             </span>
-          ) : (
-            <button type="button" className="scope-chip-text scope-chip-up" aria-label={`Go up to ${groupChip.type} ${groupChip.name}`} onClick={() => setScope(groupChip.scopeId)}>
-              <span className="scope-chip-label">{groupChip.type}</span>
-              <span className="scope-chip-name">{groupChip.name}</span>
-            </button>
-          )}
-          {groupIsCurrent && (
-            <button
-              type="button"
-              className="scope-chip-btn scope-chip-btn--step scope-trigger"
-              aria-haspopup="dialog"
-              aria-expanded={open}
-              aria-label={`Scope: ${groupChip.type} ${groupChip.name}, ${groupChip.count} properties. Change scope`}
-              title="Change scope"
-              onClick={() => setOpen((o) => !o)}
-            >
-              <Icon name="unfold_more" />
-            </button>
-          )}
-        </div>
-      )}
-      {propertyChip && (
-        <>
-          {propertyChip}
-          <button type="button" className="scope-chip-btn scope-chip-btn--step scope-trigger scope-chip-btn--loose" aria-haspopup="dialog" aria-expanded={open} aria-label={`Scope: Property ${scope.name}. Change scope`} title="Change scope" onClick={() => setOpen((o) => !o)}>
+          </button>
+          <button
+            type="button"
+            className="scope-chip-btn scope-chip-btn--step scope-trigger"
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            aria-label="Change scope"
+            title="Change scope"
+            onClick={() => setOpen((o) => !o)}
+          >
             <Icon name="unfold_more" />
           </button>
-        </>
+        </div>
       )}
+      {propertyChip}
       {open && <ScopeNavigator phone={phone} onClose={() => setOpen(false)} />}
     </nav>
   );

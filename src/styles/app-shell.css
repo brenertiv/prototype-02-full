@@ -280,11 +280,28 @@
   text-overflow: ellipsis;
   max-width: 220px;
 }
-.scope-chip-up {
-  border-radius: 4px;
+.scope-chip {
+  gap: 4px;
+  padding: 0 8px 0 0;
 }
-.scope-chip-up:hover .scope-chip-name {
-  text-decoration: underline;
+/* Split button: the main part fills the chip up to the icon button, which stays inside it */
+.scope-chip-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  min-width: 0;
+  padding: 0 4px 0 8px;
+  border-radius: 8px 0 0 8px;
+  color: inherit;
+  text-align: left;
+}
+.scope-chip:has(.scope-chip-main:hover) {
+  background: var(--shell-hover);
+}
+.scope-chip-main:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
 }
 .scope-chip-btn {
   display: inline-flex;
@@ -302,11 +319,7 @@
 .scope-chip-btn--step {
   background: var(--shell-bg);
 }
-.scope-chip-btn--loose {
-  background: var(--shell-chip);
-}
-.scope-chip-btn:focus-visible,
-.scope-chip-up:focus-visible {
+.scope-chip-btn:focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 1px;
 }
@@ -361,9 +374,13 @@
 }
 [data-phone] .scope-chip {
   height: 40px;
-  padding: 4px 4px 4px 6px;
-  gap: 6px;
+  padding: 0 4px 0 0;
   flex: 1;
+  min-width: 0;
+}
+[data-phone] .scope-chip-main {
+  flex: 1;
+  padding-left: 6px;
 }
 [data-phone] .scope-chip-thumb,
 [data-phone] .scope-chip-icon {
