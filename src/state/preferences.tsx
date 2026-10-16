@@ -11,6 +11,9 @@ export interface Prefs {
   units: 'imperial' | 'metric';
   /** Hints dismissed once per user (SYS-ONB-06). */
   hintsSeen: string[];
+  /** Column widths the user dragged to, in px. */
+  panelWidth: number;
+  chatWidth: number;
 }
 
 const DEFAULTS: Prefs = {
@@ -19,6 +22,8 @@ const DEFAULTS: Prefs = {
   theme: 'system',
   units: 'imperial',
   hintsSeen: [],
+  panelWidth: 281,
+  chatWidth: 320,
 };
 
 const KEY = 'kw.prefs';

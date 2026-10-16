@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AssistantDrawer } from '../assistant/AssistantDrawer';
 import { useTestConfig } from '../config/testConfig';
@@ -16,10 +16,14 @@ import { Icon } from './Icon';
 import { PageControlsProvider } from './pageControls';
 import { Panel } from './Panel';
 import { Rail } from './Rail';
+import { ResizeHandle } from './ResizeHandle';
 import { TestPanel } from './TestPanel';
 import { TopBar } from './TopBar';
 
 /** The three-region shell: rail, panel, canvas (SYS-NAVPAT-01), with the assistant drawer beside the canvas. */
+export const PANEL_LIMITS = { min: 220, max: 440, default: 281 };
+export const CHAT_LIMITS = { min: 280, max: 560, default: 320 };
+
 export function Shell() {
   const { prefs, set } = usePrefs();
   const { data, user } = useData();
@@ -92,7 +96,13 @@ export function Shell() {
   return (
     <PageControlsProvider>
       <WorkspaceRuntimeProvider>
-      <div className="shell" data-phone={phone || undefined} data-docked={docked} data-drawer={prefs.drawerOpen || undefined}>
+      <div
+        className="shell"
+        data-phone={phone || undefined}
+        data-docked={docked}
+        data-drawer={prefs.drawerOpen || undefined}
+        style={{ '--panel-w': `${prefs.panelWidth}px`, '--chat-w': `${prefs.chatWidth}px` } as CSSProperties}
+      >
         <a className="skip-link" href="#main">
           Skip to content
         </a>
@@ -112,7 +122,20 @@ export function Shell() {
 
         {/* One rounded frame holds the panel, the canvas column and the assistant (Figma app shell). */}
         <div className="shell-frame">
-        {!phone && docked && activeSection && !activeSection.missing && <Panel section={activeSection} mode="docked" />}
+        {!phone && docked && activeSection && !activeSection.missing && (
+          <>
+            <Panel section={activeSection} mode="docked" />
+            <ResizeHandle
+              label="Resize the panel"
+              value={prefs.panelWidth}
+              min={PANEL_LIMITS.min}
+              max={PANEL_LIMITS.max}
+              defaultValue={PANEL_LIMITS.default}
+              direction={1}
+              onChange={(w) => set('panelWidth', w)}
+            />
+          </>
+        )}
         <div className="canvas-wrap" onMouseDown={() => setPeekId(null)}>
           <TopBar phone={phone} onOpenMenu={() => setMobileOpen(true)} />
           <main id="main" ref={mainRef} className="canvas" tabIndex={-1}>
@@ -128,6 +151,17 @@ export function Shell() {
           </main>
         </div>
 
+        {prefs.drawerOpen && !phone && (
+          <ResizeHandle
+            label="Resize the assistant"
+            value={prefs.chatWidth}
+            min={CHAT_LIMITS.min}
+            max={CHAT_LIMITS.max}
+            defaultValue={CHAT_LIMITS.default}
+            direction={-1}
+            onChange={(w) => set('chatWidth', w)}
+          />
+        )}
         {prefs.drawerOpen && <AssistantDrawer phone={phone} onClose={() => set('drawerOpen', false)} />}
         </div>
 

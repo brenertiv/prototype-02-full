@@ -1417,5 +1417,5 @@ code {
   margin-bottom: 24px;
 }
 .shell:not([data-phone])[data-drawer] .proto {
-  right: calc(var(--drawer-width) + 16px);
+  right: calc(var(--chat-w, var(--drawer-width)) + 20px);
 }

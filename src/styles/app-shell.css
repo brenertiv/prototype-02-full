@@ -115,7 +115,7 @@
 
 /* ---------- Panel: part of the frame ---------- */
 .panel--docked {
-  width: 281px;
+  width: var(--panel-w, 281px);
   background: var(--shell-frame);
   border-right: 1px solid var(--shell-divider);
 }
@@ -329,7 +329,7 @@
 
 /* ---------- Assistant: the frame's right column ---------- */
 .shell-frame > .drawer:not(.drawer--sheet) {
-  width: 320px;
+  width: var(--chat-w, 320px);
   background: var(--shell-frame);
   border-left: 1px solid var(--shell-divider);
 }
@@ -405,4 +405,42 @@
 }
 [data-phone] .topbar-left > .topbar-btn {
   margin-right: 8px;
+}
+
+/* ---------- Draggable column edges ---------- */
+/* Zero-width, sitting on the border it resizes; the hit area is 9px wide. */
+.resize-handle {
+  position: relative;
+  flex: none;
+  width: 0;
+  z-index: 5;
+  outline: none;
+}
+.resize-handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -5px;
+  width: 9px;
+  cursor: col-resize;
+}
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 2px;
+  background: transparent;
+  transition: background-color 120ms;
+}
+.resize-handle:hover::after,
+.resize-handle:focus-visible::after,
+body.is-resizing .resize-handle::after {
+  background: var(--focus-ring);
+}
+body.is-resizing {
+  cursor: col-resize;
+  user-select: none;
 }
