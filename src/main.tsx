@@ -5,6 +5,7 @@ import './styles/tokens.css';
 import './styles/shell.css';
 import './styles/ui.css';
 import './styles/kilowatt.css';
+import './styles/app-shell.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

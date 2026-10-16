@@ -54,7 +54,11 @@ export function TopBar({ phone, onOpenMenu }: Props) {
   );
 }
 
-/** Where am I (SYS-SCOPE-30 to 33, CMP-TOPBAR-10 to 16): level icon, path, count; parent crumbs go up a level. */
+/**
+ * Where am I (SYS-SCOPE-30 to 33, CMP-TOPBAR-10 to 16), drawn as the Figma shell's scope chips:
+ * the portfolio or group chip, with a stepper that opens the scope navigator, and at property
+ * scope a property chip whose close button goes up to the group (CMP-TOPBAR-16).
+ */
 function ScopeIndicator({ phone }: { phone: boolean }) {
   const scope = useScopeInfo();
   const { data, accessible } = useData();
@@ -63,60 +67,83 @@ function ScopeIndicator({ phone }: { phone: boolean }) {
   // ST-S01 single-property account; ST-S07 a user whose access is one building.
   const single = data.buildings.length === 1 || accessible.size === 1;
 
-  // Parent crumbs as scope ids.
-  const crumbs: { label: string; scopeId: string }[] = [];
-  if (scope.kind !== 'portfolio' && !single) {
-    crumbs.push({ label: 'Portfolio', scopeId: 'portfolio' });
-    if (scope.kind === 'property') {
-      const b = data.buildings.find((x) => `property-${x.id}` === scope.id);
-      const leaf = data.groups.find((g) => b && g.buildingIds.includes(b.id) && !data.groups.some((c) => c.parentId === g.id));
-      const parent = leaf?.parentId ? data.groups.find((g) => g.id === leaf.parentId) : undefined;
-      if (parent) crumbs.push({ label: parent.name, scopeId: `group-${parent.id}` });
-      if (leaf) crumbs.push({ label: leaf.name, scopeId: `group-${leaf.id}` });
-    } else {
-      const g = data.groups.find((x) => `group-${x.id}` === scope.id);
-      const parent = g?.parentId ? data.groups.find((x) => x.id === g.parentId) : undefined;
-      if (parent) crumbs.push({ label: parent.name, scopeId: `group-${parent.id}` });
-    }
+  // The group a property sits in (its leaf group), and that group's parent, for the path.
+  let groupChip: { type: string; name: string; scopeId: string; path: string; count: number };
+  if (scope.kind === 'property') {
+    const b = data.buildings.find((x) => `property-${x.id}` === scope.id);
+    const leaf = data.groups.find((g) => b && g.buildingIds.includes(b.id) && !data.groups.some((c) => c.parentId === g.id));
+    const parent = leaf?.parentId ? data.groups.find((g) => g.id === leaf.parentId) : undefined;
+    groupChip = leaf
+      ? { type: leaf.kind, name: leaf.name, scopeId: `group-${leaf.id}`, path: ['Portfolio', parent?.name, leaf.name].filter(Boolean).join(' › '), count: leaf.buildingIds.filter((x) => accessible.has(x)).length }
+      : { type: 'Portfolio', name: 'All properties', scopeId: 'portfolio', path: 'Portfolio', count: accessible.size };
+  } else if (scope.kind === 'group') {
+    groupChip = { type: scope.type, name: scope.name, scopeId: scope.id, path: scope.path.join(' › '), count: scope.buildingIds.length };
+  } else {
+    groupChip = { type: 'Portfolio', name: `All ${scope.buildingIds.length} properties`, scopeId: 'portfolio', path: 'Portfolio', count: scope.buildingIds.length };
   }
-  const level = scope.kind;
-  const count = scope.buildingIds.length;
+
+  const propertyChip = scope.kind === 'property' && (
+    <div className="scope-chip scope-chip--property" title={`${groupChip.path} › ${scope.name}`}>
+      <span className="scope-chip-thumb" aria-hidden="true">
+        <Icon name={LEVEL_ICON.property} />
+      </span>
+      <span className="scope-chip-text">
+        <span className="scope-chip-label">Property</span>
+        <span className="scope-chip-name">{scope.name}</span>
+      </span>
+      {!single && (
+        <button type="button" className="scope-chip-btn" aria-label={`Go up to ${groupChip.name}`} title={`Go up to ${groupChip.name}`} onClick={() => setScope(groupChip.scopeId)}>
+          <Icon name="close" />
+        </button>
+      )}
+    </div>
+  );
 
   // CMP-SCOPE-55: a single-property account names the property and doesn't open the navigator.
-  if (single) {
-    return (
-      <div className={`scope-indicator scope-indicator--property`} aria-label={`Property: ${scope.name}`}>
-        <Icon name={LEVEL_ICON.property} filled />
-        <span className="scope-type">Property</span>
-        <span className="scope-name">{scope.name}</span>
-      </div>
-    );
-  }
+  if (single) return <nav className="scope" aria-label="Scope">{propertyChip}</nav>;
 
+  const groupIsCurrent = scope.kind !== 'property';
   return (
     <nav className="scope" aria-label="Scope">
-      <ol className={`scope-indicator scope-indicator--${level === 'portfolio' ? 'portfolio' : level === 'group' ? 'group' : 'property'}`}>
-        <li className="scope-level">
-          <Icon name={LEVEL_ICON[level]} filled />
-          {level !== 'portfolio' && <span className="scope-type">{scope.type}</span>}
-        </li>
-        {!phone &&
-          crumbs.map((c) => (
-            <li key={c.scopeId} className="scope-crumb">
-              <button type="button" className="scope-crumb-link" aria-label={`Go up to ${c.label}`} onClick={() => setScope(c.scopeId)}>
-                {c.label}
-              </button>
-              <Icon name="chevron_right" className="scope-sep" />
-            </li>
-          ))}
-        <li>
-          <button type="button" className="scope-trigger" aria-haspopup="dialog" aria-expanded={open} aria-label={`Scope: ${scope.type} ${scope.name}${level !== 'property' ? `, ${count} properties` : ''}. Change scope`} onClick={() => setOpen((o) => !o)}>
-            <span className="scope-name">{scope.name}</span>
-            {level !== 'property' && <span className="scope-count">{count} properties</span>}
-            <Icon name="expand_more" />
+      {(!phone || groupIsCurrent) && (
+        <div className={`scope-chip ${groupIsCurrent ? 'is-current' : ''}`} title={groupChip.path}>
+          <span className="scope-chip-icon" aria-hidden="true">
+            <Icon name={scope.kind === 'portfolio' ? LEVEL_ICON.portfolio : 'folder_open'} />
+          </span>
+          {groupIsCurrent ? (
+            <span className="scope-chip-text">
+              <span className="scope-chip-label">{groupChip.type}</span>
+              <span className="scope-chip-name">{groupChip.name}</span>
+            </span>
+          ) : (
+            <button type="button" className="scope-chip-text scope-chip-up" aria-label={`Go up to ${groupChip.type} ${groupChip.name}`} onClick={() => setScope(groupChip.scopeId)}>
+              <span className="scope-chip-label">{groupChip.type}</span>
+              <span className="scope-chip-name">{groupChip.name}</span>
+            </button>
+          )}
+          {groupIsCurrent && (
+            <button
+              type="button"
+              className="scope-chip-btn scope-chip-btn--step scope-trigger"
+              aria-haspopup="dialog"
+              aria-expanded={open}
+              aria-label={`Scope: ${groupChip.type} ${groupChip.name}, ${groupChip.count} properties. Change scope`}
+              title="Change scope"
+              onClick={() => setOpen((o) => !o)}
+            >
+              <Icon name="unfold_more" />
+            </button>
+          )}
+        </div>
+      )}
+      {propertyChip && (
+        <>
+          {propertyChip}
+          <button type="button" className="scope-chip-btn scope-chip-btn--step scope-trigger scope-chip-btn--loose" aria-haspopup="dialog" aria-expanded={open} aria-label={`Scope: Property ${scope.name}. Change scope`} title="Change scope" onClick={() => setOpen((o) => !o)}>
+            <Icon name="unfold_more" />
           </button>
-        </li>
-      </ol>
+        </>
+      )}
       {open && <ScopeNavigator phone={phone} onClose={() => setOpen(false)} />}
     </nav>
   );

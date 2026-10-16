@@ -1,0 +1,381 @@
+/*
+ * App shell from Figma "Enertiv UI Foundations 0.0" (Nav panel open; Chat panel open, light 538:6283,
+ * dark 482:4157): the rail on the page background, then one rounded frame holding the panel, the
+ * canvas column (scope chips over a bordered canvas card) and the assistant column. Loaded last.
+ * Desktop only; phones keep the drawer pattern (SYS-NAVPAT-30).
+ */
+
+.shell {
+  background: var(--shell-bg);
+}
+
+/* ---------- Rail: on the page background, no edge ---------- */
+.rail {
+  width: 58px;
+  background: transparent;
+  border-right: 0;
+  align-items: center;
+}
+.rail-scroll,
+.rail-fixed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+.rail-scroll {
+  padding-top: 4px;
+}
+.rail-fixed {
+  border-top: 0;
+  padding: 8px 0 16px;
+}
+.rail-item {
+  width: 42px;
+  height: 42px;
+  margin: 0;
+  color: var(--text-primary);
+}
+.rail-item .msym {
+  font-size: 24px;
+}
+.rail-item:hover {
+  background: var(--shell-hover);
+}
+.rail-item.is-active {
+  background: var(--shell-hover);
+  color: var(--text-primary);
+}
+.rail-item.is-active::before {
+  left: -8px;
+}
+/* The top tile, then a short divider under it */
+.rail-item--company {
+  width: 40px;
+  height: 40px;
+  margin: 8px 0 0;
+  border-radius: 4px;
+  background: var(--shell-logo-tile);
+}
+.rail-item--company:hover {
+  background: var(--shell-logo-tile);
+  outline: 2px solid var(--shell-hover);
+}
+.rail-item--company .company-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: var(--k-brand-500);
+  color: #fff;
+  font-weight: 500;
+}
+.rail > .rail-item--company::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: -9px;
+  height: 1px;
+  background: var(--shell-divider);
+}
+.rail > .rail-item--company {
+  margin-bottom: 12px;
+}
+/* The account item is the user's square avatar */
+.rail-item--account .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: 0;
+  background: var(--shell-chip-strong);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.rail-item--account.is-active .avatar {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 1px;
+}
+
+/* ---------- The frame ---------- */
+.shell-frame {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  margin: 4px 4px 4px 0;
+  border: 1px solid var(--shell-divider);
+  border-radius: 12px;
+  background: var(--shell-frame);
+  overflow: hidden;
+}
+[data-phone] .shell-frame {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+/* ---------- Panel: part of the frame ---------- */
+.panel--docked {
+  width: 281px;
+  background: var(--shell-frame);
+  border-right: 1px solid var(--shell-divider);
+}
+.panel--peek {
+  background: var(--shell-frame);
+  border: 1px solid var(--shell-divider);
+  border-radius: 12px;
+}
+.panel-header {
+  align-items: center;
+  padding: 12px 12px 12px 16px;
+  min-height: 54px;
+}
+.panel-title h2 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.panel .row:hover,
+.panel .primary-action:hover {
+  background: var(--shell-hover);
+}
+.panel .row[aria-current='page'] {
+  background: var(--shell-hover);
+  color: var(--text-primary);
+}
+.panel .icon-btn {
+  width: 30px;
+  height: 30px;
+  color: var(--text-primary);
+}
+.panel .icon-btn:hover,
+.panel .icon-btn.is-on {
+  background: var(--shell-hover);
+  color: var(--text-primary);
+}
+
+/* ---------- Canvas column: scope chips over the canvas card ---------- */
+.canvas-wrap {
+  padding: 8px;
+  gap: 8px;
+  background: var(--shell-frame);
+}
+.topbar {
+  position: static;
+  height: 48px;
+  flex: none;
+  padding: 0;
+  pointer-events: auto;
+  background: transparent;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.topbar-btn,
+.topbar .icon-btn {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: var(--text-primary);
+}
+.topbar-btn:hover,
+.topbar-btn.is-on {
+  background: var(--shell-hover);
+  color: var(--text-primary);
+}
+.canvas {
+  flex: 1;
+  min-height: 0;
+  padding: 24px 28px 48px;
+  border: 1px solid var(--shell-divider);
+  border-radius: 8px;
+  background: var(--shell-content);
+  /* Cards on the canvas take the paper surface */
+  --surface-raised: var(--shell-chip-strong);
+  --surface-panel: var(--shell-frame);
+  --surface-sunken: var(--shell-frame);
+}
+[data-phone] .canvas-wrap {
+  padding: 0;
+  gap: 0;
+}
+[data-phone] .topbar {
+  padding: 0 12px;
+}
+[data-phone] .canvas {
+  border: 0;
+  border-radius: 0;
+  padding: 8px 16px 120px;
+}
+
+/* ---------- Scope chips ---------- */
+.scope {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.scope-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--shell-chip);
+  color: var(--text-primary);
+  min-width: 0;
+}
+.scope-chip--property {
+  background: var(--shell-chip-strong);
+}
+.scope-chip-icon,
+.scope-chip-thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 2px;
+}
+.scope-chip-thumb {
+  background: var(--shell-bg);
+  color: var(--shell-label);
+}
+.scope-chip-icon .msym,
+.scope-chip-thumb .msym {
+  font-size: 24px;
+}
+.scope-chip-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 2px 0;
+  line-height: normal;
+  text-align: left;
+  color: inherit;
+}
+.scope-chip-label {
+  font-size: 10px;
+  color: var(--shell-label);
+}
+.scope-chip-name {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+.scope-chip-up {
+  border-radius: 4px;
+}
+.scope-chip-up:hover .scope-chip-name {
+  text-decoration: underline;
+}
+.scope-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 8px;
+  color: var(--text-primary);
+}
+.scope-chip-btn:hover {
+  background: var(--shell-hover);
+}
+.scope-chip-btn--step {
+  background: var(--shell-bg);
+}
+.scope-chip-btn--loose {
+  background: var(--shell-chip);
+}
+.scope-chip-btn:focus-visible,
+.scope-chip-up:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+.scope-nav {
+  top: calc(100% + 4px);
+}
+
+/* ---------- Assistant: the frame's right column ---------- */
+.shell-frame > .drawer:not(.drawer--sheet) {
+  width: 320px;
+  background: var(--shell-frame);
+  border-left: 1px solid var(--shell-divider);
+}
+.shell-frame > .drawer .drawer-header {
+  border-bottom: 0;
+  padding: 12px 12px 12px 16px;
+  min-height: 54px;
+  align-items: center;
+}
+.shell-frame > .drawer .drawer-header h2 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.shell-frame > .drawer .as-composer-wrap {
+  border-top: 0;
+  padding: 8px 12px 12px;
+}
+.shell-frame > .drawer .composer.as-composer {
+  min-height: 105px;
+  align-items: flex-end;
+  border: 1px solid var(--shell-divider);
+  border-radius: 8px;
+  background: var(--shell-content);
+}
+.shell-frame > .drawer .icon-btn:hover {
+  background: var(--shell-hover);
+}
+
+/* ---------- Phone: compact chips ---------- */
+[data-phone] .topbar {
+  height: 52px;
+  gap: 4px;
+}
+[data-phone] .topbar-left {
+  gap: 4px;
+  flex: 1;
+  margin-right: 4px;
+}
+[data-phone] .scope {
+  gap: 4px;
+  flex: 1;
+}
+[data-phone] .scope-chip {
+  height: 40px;
+  padding: 4px 4px 4px 6px;
+  gap: 6px;
+  flex: 1;
+}
+[data-phone] .scope-chip-thumb,
+[data-phone] .scope-chip-icon {
+  display: none;
+}
+[data-phone] .scope-chip-name {
+  max-width: none;
+}
+[data-phone] .scope-chip-text {
+  flex: 1;
+}
+[data-phone] .scope-chip-btn {
+  width: 30px;
+  height: 30px;
+}
+[data-phone] .topbar-right .btn {
+  padding: 4px 8px;
+}
+[data-phone] .topbar .count-badge {
+  top: -6px;
+  right: -10px;
+}
+[data-phone] .topbar-left > .topbar-btn {
+  margin-right: 8px;
+}

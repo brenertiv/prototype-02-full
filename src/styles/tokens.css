@@ -18,6 +18,7 @@
   --k-slate-700: #d6dee8;
   --k-slate-900: #cad5e2;
   --k-slate-950: #768699;
+  --k-navy-100: #72abdb;
   --k-navy-200: #6ca2cf;
   --k-navy-300: #4f7da3;
   --k-navy-400: #426a8a;
@@ -162,6 +163,18 @@
   --writer-both: var(--k-palette-error-main);
   --writer-missing: var(--k-palette-border-level1);
 
+
+  /* ---------- App shell (Figma "Enertiv UI Foundations 0.0", Nav panel open; Chat panel open) ---------- */
+  --shell-bg: var(--k-slate-300);
+  --shell-frame: var(--k-slate-200);
+  --shell-content: var(--k-slate-100);
+  --shell-chip: var(--k-slate-100);
+  --shell-chip-strong: var(--k-slate-50);
+  --shell-divider: var(--k-slate-500);
+  --shell-hover: var(--k-slate-500);
+  --shell-label: var(--k-navy-400);
+  --shell-logo-tile: var(--k-slate-50);
+
   /* Prototype: layout */
   --rail-width: 52px;
   --panel-width: 288px;
@@ -207,6 +220,14 @@
     --chart-5: #f07aa3;
     --chart-6: #93a1b5;
     --writer-client: #f0a54b;
+    --shell-bg: var(--k-navy-950);
+    --shell-frame: var(--k-navy-900);
+    --shell-content: var(--k-navy-700);
+    --shell-chip: var(--k-navy-700);
+    --shell-chip-strong: var(--k-navy-500);
+    --shell-divider: var(--k-navy-700);
+    --shell-hover: var(--k-navy-400);
+    --shell-label: var(--k-navy-100);
     color-scheme: dark;
   }
 }
@@ -244,5 +265,13 @@
   --chart-5: #f07aa3;
   --chart-6: #93a1b5;
   --writer-client: #f0a54b;
+  --shell-bg: var(--k-navy-950);
+  --shell-frame: var(--k-navy-900);
+  --shell-content: var(--k-navy-700);
+  --shell-chip: var(--k-navy-700);
+  --shell-chip-strong: var(--k-navy-500);
+  --shell-divider: var(--k-navy-700);
+  --shell-hover: var(--k-navy-400);
+  --shell-label: var(--k-navy-100);
   color-scheme: dark;
 }

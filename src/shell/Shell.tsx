@@ -106,11 +106,13 @@ export function Shell() {
               onClickSection={docked ? undefined : openPeek}
               onOpenCompany={() => setCompanyOpen(true)}
             />
-            {docked && activeSection && !activeSection.missing && <Panel section={activeSection} mode="docked" />}
             {!docked && peekSection && <Panel section={peekSection} mode="peek" onClose={() => setPeekId(null)} onNavigate={() => setPeekId(null)} />}
           </div>
         )}
 
+        {/* One rounded frame holds the panel, the canvas column and the assistant (Figma app shell). */}
+        <div className="shell-frame">
+        {!phone && docked && activeSection && !activeSection.missing && <Panel section={activeSection} mode="docked" />}
         <div className="canvas-wrap" onMouseDown={() => setPeekId(null)}>
           <TopBar phone={phone} onOpenMenu={() => setMobileOpen(true)} />
           <main id="main" ref={mainRef} className="canvas" tabIndex={-1}>
@@ -127,6 +129,7 @@ export function Shell() {
         </div>
 
         {prefs.drawerOpen && <AssistantDrawer phone={phone} onClose={() => set('drawerOpen', false)} />}
+        </div>
 
         {phone && mobileOpen && (
           <div className="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation">
