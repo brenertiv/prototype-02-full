@@ -169,6 +169,7 @@
   --shell-frame: var(--k-slate-200);
   --shell-content: var(--k-slate-100);
   --shell-chip: var(--k-slate-100);
+  --shell-card: var(--k-slate-100);
   --shell-chip-strong: var(--k-slate-50);
   --shell-divider: var(--k-slate-500);
   --shell-hover: var(--k-slate-500);
@@ -224,6 +225,7 @@
     --shell-frame: var(--k-navy-900);
     --shell-content: var(--k-navy-700);
     --shell-chip: var(--k-navy-700);
+    --shell-card: var(--k-navy-800);
     --shell-chip-strong: var(--k-navy-500);
     --shell-divider: var(--k-navy-700);
     --shell-hover: var(--k-navy-400);
@@ -269,6 +271,7 @@
   --shell-frame: var(--k-navy-900);
   --shell-content: var(--k-navy-700);
   --shell-chip: var(--k-navy-700);
+  --shell-card: var(--k-navy-800);
   --shell-chip-strong: var(--k-navy-500);
   --shell-divider: var(--k-navy-700);
   --shell-hover: var(--k-navy-400);

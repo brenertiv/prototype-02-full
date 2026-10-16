@@ -197,8 +197,8 @@
   border-radius: 8px;
   /* The canvas sits on the frame's own surface, with no border of its own */
   background: var(--shell-frame);
-  /* Cards on the canvas take the content surface (the Figma canvas card's inner surface) */
-  --surface-raised: var(--shell-content);
+  /* Cards on the canvas: one step above the canvas (navy 800 in dark) */
+  --surface-raised: var(--shell-card);
   --surface-panel: var(--shell-frame);
   --surface-sunken: var(--shell-frame);
 }
