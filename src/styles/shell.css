@@ -148,7 +148,7 @@ code {
 }
 .rail-fixed {
   flex: none;
-  border-top: 1px solid var(--border-strong);
+  border-top: 1px solid var(--border-subtle);
   padding: 6px 0 8px;
 }
 .rail-item {
