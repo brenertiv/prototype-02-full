@@ -435,9 +435,12 @@
   background: transparent;
   transition: background-color 120ms;
 }
+/* Only the edge in use lights up, in a quiet border tone; keyboard focus keeps the focus ring */
 .resize-handle:hover::after,
-.resize-handle:focus-visible::after,
-body.is-resizing .resize-handle::after {
+.resize-handle.is-dragging::after {
+  background: var(--k-palette-border-level2);
+}
+.resize-handle:focus-visible::after {
   background: var(--focus-ring);
 }
 body.is-resizing {

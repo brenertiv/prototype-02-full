@@ -23,6 +23,7 @@ export function ResizeHandle({ label, value, min, max, defaultValue, direction, 
     e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
     start.current = { x: e.clientX, width: value };
+    e.currentTarget.classList.add('is-dragging');
     document.body.classList.add('is-resizing');
   };
   const onPointerMove = (e: PointerEvent<HTMLDivElement>) => {
@@ -33,6 +34,7 @@ export function ResizeHandle({ label, value, min, max, defaultValue, direction, 
     if (!start.current) return;
     start.current = null;
     e.currentTarget.releasePointerCapture(e.pointerId);
+    e.currentTarget.classList.remove('is-dragging');
     document.body.classList.remove('is-resizing');
   };
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
