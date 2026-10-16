@@ -196,10 +196,15 @@
   border-radius: 8px;
   /* The canvas sits on the frame's own surface, with no border of its own */
   background: var(--shell-frame);
-  /* Cards on the canvas take the paper surface */
-  --surface-raised: var(--shell-chip-strong);
-  --surface-panel: var(--shell-content);
-  --surface-sunken: var(--shell-content);
+  /* Cards on the canvas take the content surface (the Figma canvas card's inner surface) */
+  --surface-raised: var(--shell-content);
+  --surface-panel: var(--shell-frame);
+  --surface-sunken: var(--shell-frame);
+}
+/* A card nested in a card (KPI tiles in a workspace component) steps up to paper */
+.canvas .card .kpi,
+.canvas .card .card {
+  background: var(--shell-chip-strong);
 }
 [data-phone] .canvas-wrap {
   padding: 0;
