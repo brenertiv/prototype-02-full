@@ -447,3 +447,45 @@ body.is-resizing {
   cursor: col-resize;
   user-select: none;
 }
+
+/* ---------- Scope chips shrink and truncate before anything overlaps ---------- */
+.topbar-left {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.scope {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.scope-chip {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+.scope-chip-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+.scope-chip-icon,
+.scope-chip-thumb,
+.scope-chip-btn {
+  flex: none;
+}
+.scope-chip-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+.scope-chip-label,
+.scope-chip-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* Never narrower than its icon plus a few characters of the name */
+.scope-chip-main {
+  min-width: 88px;
+}
