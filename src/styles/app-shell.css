@@ -11,7 +11,6 @@
 
 /* ---------- Rail: on the page background, no edge ---------- */
 .rail {
-  width: 58px;
   background: transparent;
   border-right: 0;
   align-items: center;
@@ -121,6 +120,8 @@
   border-right: 1px solid var(--shell-divider);
 }
 .panel--peek {
+  /* Clear of the rail buttons */
+  left: calc(var(--rail-width) + 12px);
   background: var(--shell-frame);
   border: 1px solid var(--shell-divider);
   border-radius: 12px;
