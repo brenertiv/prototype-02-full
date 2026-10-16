@@ -107,8 +107,8 @@ function WorkspaceView({ ws }: { ws: Workspace }) {
 
   usePageControls(
     <>
-      <button type="button" className="btn btn--ghost btn--sm topbar-share" onClick={() => setDialog('share')}>
-        <Icon name="ios_share" /> Share
+      <button type="button" className="icon-btn topbar-btn topbar-share" aria-label="Share" title="Share" onClick={() => setDialog('share')}>
+        <Icon name="ios_share" />
       </button>
       <MoreMenu>
         {(close) => (
